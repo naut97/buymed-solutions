@@ -17,6 +17,7 @@ const ProductQRGenerator = () => {
       purchaseOrderId,
       increaseCode,
     } = values;
+    console.log('Success:', values);
 
     let link = 'https://thuocsi.vn/qr/';
     if (productId) {
@@ -43,6 +44,7 @@ const ProductQRGenerator = () => {
     const uniqueId =
       `T${createdTimestamp.length.toString().padStart(2, '0')}${createdTimestamp}C${computerCode.length.toString().padStart(2, '0')}${computerCode}I${increaseCode.length.toString().padStart(2, '0')}${increaseCode}`
         .length;
+    console.log('uniqueId', uniqueId);
 
     link += `U${uniqueId}`;
     link += `T${createdTimestamp.length.toString().padStart(2, '0')}${createdTimestamp}`;
@@ -50,7 +52,9 @@ const ProductQRGenerator = () => {
     if (computerCode) {
       link += `C${computerCode.length.toString().padStart(2, '0')}${computerCode}`;
     }
-
+    if (increaseCode) {
+      link += `I${increaseCode.length.toString().padStart(2, '0')}${increaseCode}`;
+    }
     setCurrentLink(link);
   };
 
