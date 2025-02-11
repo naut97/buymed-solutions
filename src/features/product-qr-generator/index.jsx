@@ -1,7 +1,7 @@
 import React from 'react';
 import {Button, DatePicker, Flex, Form, Input, Layout, Typography} from 'antd';
 import dayjs from 'dayjs';
-import {QRCodeCanvas, QRCodeSVG} from 'qrcode.react';
+import {QRCodeSVG} from 'qrcode.react';
 
 const ProductQRGenerator = () => {
   const [currentLink, setCurrentLink] = React.useState('');
@@ -170,12 +170,16 @@ const ProductQRGenerator = () => {
             </Form.Item>
           </Form>
         </Layout>
-        <Layout>
-          <Typography.Title level={4}>QR Canvas: </Typography.Title>
-          <QRCodeSVG value={currentLink} />
-          <Typography.Title level={4}>Link: </Typography.Title>
-          <Typography.Text copyable>{currentLink}</Typography.Text>
-        </Layout>
+        {currentLink ? (
+          <Layout>
+            <Typography.Title level={4}>QR Canvas: </Typography.Title>
+            <QRCodeSVG value={currentLink} />
+            <Typography.Title level={4}>Link: </Typography.Title>
+            <Typography.Text copyable>{currentLink}</Typography.Text>
+          </Layout>
+        ) : (
+          <></>
+        )}
       </Flex>
     </Layout>
   );

@@ -1,11 +1,5 @@
 import {useState} from 'react';
-import {
-  MenuFoldOutlined,
-  MenuUnfoldOutlined,
-  LinkOutlined,
-  QrcodeOutlined,
-  CloudDownloadOutlined,
-} from '@ant-design/icons';
+import {MenuFoldOutlined, MenuUnfoldOutlined, QrcodeOutlined} from '@ant-design/icons';
 import {Button, Layout, Menu, theme, Image} from 'antd';
 import logo_buymed from './assets/logo_buymed.svg';
 import logo_buymed_toolkit from './assets/logo_buymed_toolkit.svg';
@@ -13,7 +7,7 @@ import Features from './features/index.jsx';
 
 const App = () => {
   const [collapsed, setCollapsed] = useState(false);
-  const [currentAppId, setCurrentAppId] = useState('deeplink');
+  const [currentAppId, setCurrentAppId] = useState('product-qr');
   const {
     token: {colorBgContainer, borderRadiusLG, neutral4},
   } = theme.useToken();
@@ -36,31 +30,31 @@ const App = () => {
             preview={false}
             width={collapsed ? 40 : 250}
             src={collapsed ? logo_buymed : logo_buymed_toolkit}
-            style={{textAlign: 'center'}}
+            style={{textAlign: 'center', marginBottom: collapsed ? 16 : 0}}
           />
         </center>
         <Menu
-          defaultSelectedKeys={['deeplink']}
+          defaultSelectedKeys={['product-qr']}
           mode="inline"
           theme="light"
           inlineCollapsed={collapsed}
           onClick={onClickMenuItem}
           items={[
-            {
-              key: 'deeplink',
-              icon: <LinkOutlined />,
-              label: 'Deeplink Generator',
-            },
+            // {
+            //   key: 'deeplink',
+            //   icon: <LinkOutlined />,
+            //   label: 'Deeplink Generator',
+            // },
             {
               key: 'product-qr',
               icon: <QrcodeOutlined />,
               label: 'Product QR Generator',
             },
-            {
-              key: 'sideloader',
-              icon: <CloudDownloadOutlined />,
-              label: 'Bundle Sideloader',
-            },
+            // {
+            //   key: 'sideloader',
+            //   icon: <CloudDownloadOutlined />,
+            //   label: 'Bundle Sideloader',
+            // },
           ]}
         />
       </Layout.Sider>
@@ -103,7 +97,7 @@ const App = () => {
             position: 'sticky', // Sticky footer
             bottom: 0,
           }}>
-          Powered by Buymed Technology Center - Buymed Group
+          Powered by Daniel from Buymed Technology Center - Buymed Group
         </Layout.Footer>
       </Layout>
     </Layout>
