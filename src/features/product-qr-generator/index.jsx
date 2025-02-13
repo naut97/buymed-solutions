@@ -1,5 +1,5 @@
 import React from 'react';
-import {Button, DatePicker, Flex, Form, Input, Layout, Typography} from 'antd';
+import {Button, DatePicker, Flex, Form, Input, Layout, Select, Typography} from 'antd';
 import dayjs from 'dayjs';
 import {QRCodeSVG} from 'qrcode.react';
 
@@ -16,10 +16,10 @@ const ProductQRGenerator = () => {
       expiredDate,
       purchaseOrderId,
       increaseCode,
+      selectedCountry
     } = values;
-    console.log('Success:', values);
 
-    let link = 'https://thuocsi.vn/qr/';
+    let link = selectedCountry;
     if (productId) {
       link += `P${productId.length.toString().padStart(2, '0')}${productId}`;
     }
@@ -79,6 +79,21 @@ const ProductQRGenerator = () => {
             }}
             autoComplete="off"
             onFinish={onFinish}>
+            <Form.Item
+                label="Select Country"
+                name="selectedCountry"
+                rules={[
+                  {
+                    required: true,
+                    message: 'Please select your country!',
+                  },
+                ]}>
+              <Select placeholder="Please select your country!" defaultValue={"https://thuocsi.vn/qr/"}>
+                <Select.Option value="https://thuocsi.vn/qr/">🇻🇳 VN (https://thuocsi.vn/qr)</Select.Option>
+                <Select.Option value="https://buymed.co.th/qr/">🇹🇭 TH (https://buymed.co.th/qr)</Select.Option>
+                <Select.Option value="https://buymed.com.kh/qr/">🇰🇭 KH (https://buymed.com.kh/qr/)</Select.Option>
+              </Select>
+            </Form.Item>
             <Form.Item
               label="Product ID"
               name="productId"
